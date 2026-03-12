@@ -1,31 +1,12 @@
 import { ArrowRight, Check, Star, Zap, FileText, Sparkles, Globe, Code } from 'lucide-react';
 import './App.css'
+import Navbar from './components/Navbar';
 
 function App() {
 
   return (
     <div className="min-h-screen bg-[#0c0f0a] font-['Inter',sans-serif]">
-      {/* Navigation */}
-      <nav className="border-b border-[#d2ff2f]/20 bg-[#0c0f0a]">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <FileText className="w-8 h-8 text-[#d2ff2f]" />
-              <span className="text-xl font-bold text-white">ResumeToSite</span>
-            </div>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-white/80 hover:text-[#d2ff2f] transition">Features</a>
-              <a href="#how-it-works" className="text-white/80 hover:text-[#d2ff2f] transition">How It Works</a>
-              <a href="#pricing" className="text-white/80 hover:text-[#d2ff2f] transition">Pricing</a>
-              <a href="#testimonials" className="text-white/80 hover:text-[#d2ff2f] transition">Testimonials</a>
-            </div>
-            <button className="bg-[#d2ff2f] text-[#0c0f0a] px-6 py-2 font-semibold hover:bg-[#d2ff2f]/90 transition flex items-center gap-2">
-              Get Started <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar />
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
