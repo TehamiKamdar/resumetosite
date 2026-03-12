@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Star, Users, Zap, FileText, Sparkles, Globe, Code } from 'lucide-react';
+import { ArrowRight, Check, Star, Zap, FileText, Sparkles, Globe, Code } from 'lucide-react';
 import './App.css'
 
 function App() {
