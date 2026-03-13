@@ -1,13 +1,11 @@
-import { ArrowRight, Check, Star, Zap, Sparkles, Globe, Code } from 'lucide-react';
+import { ArrowRight, Check, Star, Zap, Sparkles, Globe, Code, UploadIcon } from 'lucide-react';
 import './App.css'
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Layout from './layouts/Layout';
 
 function App() {
 
   return (
-    <div className="min-h-screen bg-[#0c0f0a] font-['Inter',sans-serif]">
-      <Navbar />
+    <Layout>
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -24,12 +22,13 @@ function App() {
               Transform your boring PDF resume into an interactive, modern portfolio website in minutes. No coding required. Just upload and impress.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2">
-                Start Free Trial <ArrowRight className="w-5 h-5" />
+              <button className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
+                Get Started <ArrowRight className="w-5 h-5" />
               </button>
-              <button className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition">
-                See Examples
-              </button>
+              <label className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition flex items-center justify-center gap-2 cursor-pointer">
+                Upload your Resume <UploadIcon className='w-5 h-5' />
+                <input type="file" name="resume-upload" accept='.pdf' className='hidden' id="" />
+              </label>
             </div>
             <div className="flex items-center gap-6 mt-8">
               <div className="flex -space-x-2">
@@ -210,9 +209,7 @@ function App() {
           </button>
         </div>
       </section>
-      
-      <Footer />
-    </div>
+      </Layout>
   );
 }
 
