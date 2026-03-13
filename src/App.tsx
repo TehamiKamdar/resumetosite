@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Star, Zap, FileText, Sparkles, Globe, Code } from 'lucide-react';
+import { ArrowRight, Check, Star, Zap, Sparkles, Globe, Code } from 'lucide-react';
 import './App.css'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
