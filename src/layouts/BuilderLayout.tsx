@@ -1,5 +1,7 @@
-// StepsLayout.jsx
-const StepsLayout = () => {
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
+const BuilderLayout = () => {
   const steps = [
     { number: 1, name: "Details", icon: "📋" },
     { number: 2, name: "Skills", icon: "⚡" },
@@ -85,8 +87,13 @@ const StepsLayout = () => {
         <div className="absolute bottom-6 left-6 w-20 h-20 border-l-4 border-b-4 border-[#41ead4]/30"></div>
         <div className="absolute bottom-6 right-6 w-20 h-20 border-r-4 border-b-4 border-[#d2ff2f]/30"></div>
       </div>
+
+      {/* Step Content */}
+      <div className="w-full max-w-4xl mt-12">
+        <Outlet />
+      </div>
     </div>
   );
 };
 
-export default StepsLayout;
+export default BuilderLayout;
