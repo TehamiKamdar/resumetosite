@@ -116,7 +116,6 @@ const Details = () => {
               name="about"
               value={formData.about}
               onChange={handleInputChange}
-              rows="5"
               placeholder="Write a brief introduction about yourself, your passion, and what drives you..."
               className="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] focus:bg-white/10 outline-none transition resize-none"
             />
