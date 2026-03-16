@@ -1,4 +1,5 @@
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Navbar = () =>{
   return(
@@ -6,8 +7,9 @@ const Navbar = () =>{
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <FileText className="w-8 h-8 text-[#d2ff2f]" />
-              <span className="text-xl font-bold text-white">ResumeToSite</span>
+              {/* <FileText className="w-8 h-8 text-[#d2ff2f]" />
+              <span className="text-xl font-bold text-white">ResumeToSite</span> */}
+              <img src={logo} alt="" className="h-12 object-fit" />
             </div>
             <div className="md:flex items-center gap-8">
               <a href="#features" className="text-white/80 hover:text-[#d2ff2f] transition">Features</a>
