@@ -29,7 +29,7 @@ const Skills = () => {
     if (formData.skills.length > 1) {
       setFormData(prev => ({
         ...prev,
-        skills: prev.skills.filter((skill: any) => skill.id !== id)
+        skills: prev.skills.filter((skill: any) => skill.id !== Number(id))
       }));
     }
   };
