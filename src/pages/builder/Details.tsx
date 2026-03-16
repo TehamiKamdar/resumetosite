@@ -1,15 +1,17 @@
 // Details.jsx
 import React, { useState } from 'react';
 import { User, Mail, Phone, Info, Globe, Award, Save, ArrowRight, Plus, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Details = () => {
+  const data = JSON.parse(localStorage.getItem('resumeDraft'));
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    about: '',
-    languages: [''],
-    certifications: ['']
+    fullName: data.fullName || '',
+    email: data.email || '',
+    phone: data.phone || '',
+    about: data.about || '',
+    languages: data.languages || [''],
+    certifications: data.certifications || ['']
   });
 
   const handleInputChange = (e) => {
@@ -71,6 +73,42 @@ const Details = () => {
       }));
     }
   };
+
+  const validateStep = () =>{
+    const {fullName, email, phone, about} = formData
+
+    // Basic checks
+    if (!fullName.trim()) {
+      alert("Name is required");
+      return false;
+    }
+    if (!email.trim()) {
+      alert("Email is required");
+      return false;
+    }
+    if (!phone.trim()) {
+      alert("Phone is required");
+      return false;
+    }
+    if (!about.trim()) {
+      alert("About is required");
+      return false;
+    }
+
+    return true;
+  }
+
+  const saveDataToLocal = () => {
+    localStorage.setItem('resumeDraft', JSON.stringify(formData));
+  }
+  
+  const navigate = useNavigate();
+  const handleNextStep = () => {
+    if(!validateStep()) return;
+
+    saveDataToLocal();
+    navigate('/builder/skills');
+  }
 
   return (
     <div className="min-h-screen bg-[#0c0f0a]">
@@ -242,12 +280,12 @@ const Details = () => {
             </div>
             
             <div className="flex gap-4">
-              <button className="flex items-center gap-2 border border-white/20 text-white/60 px-6 py-3 hover:border-white/40 hover:text-white transition group">
+              <button onClick={() => {saveDataToLocal(); alert('Data Saved')}} className="flex items-center gap-2 border border-white/20 text-white/60 px-6 py-3 font-mono hover:border-white/40 hover:text-white transition group">
                 <Save className="w-4 h-4 group-hover:rotate-12 transition" />
                 SAVE DRAFT
               </button>
-              <button className="flex items-center gap-2 bg-[#d2ff2f] text-[#0c0f0a] px-8 py-3 font-semibold hover:bg-[#d2ff2f]/90 transition group">
-                NEXT STEP
+              <button type='button' onClick={() => handleNextStep()} className="flex items-center gap-2 bg-[#d2ff2f] text-[#0c0f0a] px-8 py-3 font-semibold font-mono hover:bg-[#d2ff2f]/90 transition group">
+                NEXT: SKILLS
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
               </button>
             </div>
