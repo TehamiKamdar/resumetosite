@@ -1,19 +1,19 @@
 import { ArrowRight, Sparkles, UploadIcon } from 'lucide-react';
-import './App.css'
-import ResumeUploader from './ResumeUploader';
-import type { ResumeData } from './ResumeUploader';
-import { useState } from 'react';
-import ResumeBuilderForm from './ResumeBuilderForm';
+import { useNavigate } from 'react-router-dom';
+// import ResumeUploader from './ResumeUploader';
+// import type { ResumeData } from './ResumeUploader';
+// import { useState } from 'react';
+// import ResumeBuilderForm from './ResumeBuilderForm';
 
 function Hero(){
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [extractedData, setExtractedData] = useState<ResumeData | null>(null);
-  const [showBuilder, setShowBuilder] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) setUploadedFile(file);
-  };
-
+  // const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  // const [extractedData, setExtractedData] = useState<ResumeData | null>(null);
+  // const [showBuilder, setShowBuilder] = useState(false);
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) setUploadedFile(file);
+  // };
+  const navigate = useNavigate();
 
   return(
       <section className="max-w-7xl mx-auto px-6 py-24">
@@ -31,35 +31,35 @@ function Hero(){
               Transform your boring PDF resume into an interactive, modern portfolio website in minutes. No coding required. Just upload and impress.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
+              <button onClick={() => navigate('/builder')} className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
                 Get Started <ArrowRight className="w-5 h-5" />
               </button>
               <label className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition flex items-center justify-center gap-2 cursor-pointer">
                 Upload your Resume <UploadIcon className='w-5 h-5' />
-                <input type="file" name="resume-upload" accept='.pdf' className='hidden' id="" onChange={handleChange} />
+                {/* <input type="file" name="resume-upload" accept='.pdf' className='hidden' id="" onChange={handleChange} /> */}
               </label>
-              {uploadedFile && (
-                <ResumeUploader
-                  file={uploadedFile}
-                  autoProcess={true}
-                  onExtracted={(data) => {
-                    setExtractedData(data);
-                    setShowBuilder(true);
-                    setUploadedFile(null);  // clean
-                    // builder show kar do
-                  }}
-                />
-              )}
-              {showBuilder && extractedData && (
-                <ResumeBuilderForm
-                  initialData={extractedData}
-                  onNext={(updatedData) => {
-                    // yahan theme selection page pe jaao ya updatedData save karo
-                    console.log('Updated Data ready for portfolio:', updatedData);
-                    // setShowThemeSelection(true); // next step
-                  }}
-                />
-              )}
+              {/* {uploadedFile && (
+                // <ResumeUploader
+                //   file={uploadedFile}
+                //   autoProcess={true}
+                //   onExtracted={(data) => {
+                //     setExtractedData(data);
+                //     setShowBuilder(true);
+                //     setUploadedFile(null);  // clean
+                //     // builder show kar do
+                //   }}
+                // />
+              )} */}
+              {/* {showBuilder && extractedData && (
+                // <ResumeBuilderForm
+                //   initialData={extractedData}
+                //   onNext={(updatedData) => {
+                //     // yahan theme selection page pe jaao ya updatedData save karo
+                //     console.log('Updated Data ready for portfolio:', updatedData);
+                //     // setShowThemeSelection(true); // next step
+                //   }}
+                // />
+              )} */}
             </div>
             <div className="flex items-center gap-6 mt-8">
               <div className="flex -space-x-2">

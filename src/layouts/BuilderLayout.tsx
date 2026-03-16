@@ -13,16 +13,14 @@ const BuilderLayout = () => {
   const [activeStep, setActiveStep] = useState(1);
 
   return (
-    <div className="min-h-screen bg-[#0c0f0a] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[#0c0f0a] p-6">
       {/* Main Container */}
-      <div className="w-full max-w-4xl">
+      <div className="w-full">
         {/* Steps Container */}
         <div className="relative">
-          {/* Background Line */}
-          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-[#d2ff2f]/20 -translate-y-1/2"></div>
           
           {/* Steps */}
-          <div className="relative flex justify-between">
+          <div className="relative flex justify-around">
             {steps.map((step) => (
               <div
                 key={step.number}
@@ -80,16 +78,10 @@ const BuilderLayout = () => {
             </span>
           </div>
         </div>
-
-        {/* Corner Decorations */}
-        <div className="absolute top-6 left-6 w-20 h-20 border-l-4 border-t-4 border-[#d2ff2f]/30"></div>
-        <div className="absolute top-6 right-6 w-20 h-20 border-r-4 border-t-4 border-[#ff206e]/30"></div>
-        <div className="absolute bottom-6 left-6 w-20 h-20 border-l-4 border-b-4 border-[#41ead4]/30"></div>
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-r-4 border-b-4 border-[#d2ff2f]/30"></div>
       </div>
 
       {/* Step Content */}
-      <div className="w-full max-w-4xl mt-12">
+      <div className="w-full mt-12">
         <Outlet />
       </div>
     </div>
