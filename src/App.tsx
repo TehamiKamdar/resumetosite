@@ -4,6 +4,7 @@ import Layout from './layouts/Layout';
 import Home from "./pages/Home";
 import BuilderLayout from "./layouts/BuilderLayout";
 import Details from "./pages/builder/Details";
+import Skills from "./pages/builder/Skills";
 
 
 function App() {
@@ -18,11 +19,11 @@ function App() {
           {/* <Route path="/about" element={<About />} /> */}
         </Route>
         <Route path="/builder" element={<BuilderLayout />}>
-          <Route index element={<Details />} />
-          {/* <Route path="skills" element={<Skills />} />
-          <Route path="experience" element={<Experience />} />
-          <Route path="theme" element={<Theme />} />
-          <Route path="preview" element={<Preview />} /> */}
+          <Route path="details" element={<Details />} />
+          <Route path="skills" element={<Skills />} />
+          {/* <Route path="experience" element={<Experience />} /> */}
+          {/* <Route path="theme" element={<Theme />} /> */}
+          {/* <Route path="preview" element={<Preview />} /> */}
         </Route>
 
       </Routes>

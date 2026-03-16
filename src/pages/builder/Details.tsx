@@ -1,114 +1,45 @@
-// Details.jsx
-import React, { useState } from 'react';
-import { User, Mail, Phone, Info, Globe, Award, Save, ArrowRight, Plus, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useOutletContext } from "react-router-dom";
+import { User, Mail, Phone, Info, Globe, Award, Plus, X } from 'lucide-react';
+
+type BuilderContext = {
+  formData: any; // aap type ResumeData use kar sakte ho
+  setFormData: React.Dispatch<React.SetStateAction<any>>;
+};
 
 const Details = () => {
-  const data = JSON.parse(localStorage.getItem('resumeDraft'));
-  const [formData, setFormData] = useState({
-    fullName: data.fullName || '',
-    email: data.email || '',
-    phone: data.phone || '',
-    about: data.about || '',
-    languages: data.languages || [''],
-    certifications: data.certifications || ['']
-  });
+  const { formData, setFormData } = useOutletContext<BuilderContext>();
 
-  const handleInputChange = (e) => {
+  // Input Handlers remain same but remove local useState
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleLanguageChange = (index, value) => {
+  const handleLanguageChange = (index: number, value: string) => {
     const updatedLanguages = [...formData.languages];
     updatedLanguages[index] = value;
-    setFormData(prev => ({
-      ...prev,
-      languages: updatedLanguages
-    }));
+    setFormData(prev => ({ ...prev, languages: updatedLanguages }));
   };
 
-  const handleCertificationChange = (index, value) => {
+  const handleCertificationChange = (index: number, value: string) => {
     const updatedCertifications = [...formData.certifications];
     updatedCertifications[index] = value;
-    setFormData(prev => ({
-      ...prev,
-      certifications: updatedCertifications
-    }));
+    setFormData(prev => ({ ...prev, certifications: updatedCertifications }));
   };
 
-  const addLanguage = () => {
-    setFormData(prev => ({
-      ...prev,
-      languages: [...prev.languages, '']
-    }));
-  };
-
-  const addCertification = () => {
-    setFormData(prev => ({
-      ...prev,
-      certifications: [...prev.certifications, '']
-    }));
-  };
-
-  const removeLanguage = (index) => {
-    if (formData.languages.length > 1) {
-      const updatedLanguages = formData.languages.filter((_, i) => i !== index);
-      setFormData(prev => ({
-        ...prev,
-        languages: updatedLanguages
-      }));
+  const addLanguage = () => setFormData(prev => ({ ...prev, languages: [...prev.languages, ''] }));
+  const removeLanguage = (index: number) => {
+    if(formData.languages.length > 1){
+      setFormData(prev => ({ ...prev, languages: prev.languages.filter((_, i) => i !== index) }));
     }
   };
 
-  const removeCertification = (index) => {
-    if (formData.certifications.length > 1) {
-      const updatedCertifications = formData.certifications.filter((_, i) => i !== index);
-      setFormData(prev => ({
-        ...prev,
-        certifications: updatedCertifications
-      }));
+  const addCertification = () => setFormData(prev => ({ ...prev, certifications: [...prev.certifications, ''] }));
+  const removeCertification = (index: number) => {
+    if(formData.certifications.length > 1){
+      setFormData(prev => ({ ...prev, certifications: prev.certifications.filter((_, i) => i !== index) }));
     }
   };
-
-  const validateStep = () =>{
-    const {fullName, email, phone, about} = formData
-
-    // Basic checks
-    if (!fullName.trim()) {
-      alert("Name is required");
-      return false;
-    }
-    if (!email.trim()) {
-      alert("Email is required");
-      return false;
-    }
-    if (!phone.trim()) {
-      alert("Phone is required");
-      return false;
-    }
-    if (!about.trim()) {
-      alert("About is required");
-      return false;
-    }
-
-    return true;
-  }
-
-  const saveDataToLocal = () => {
-    localStorage.setItem('resumeDraft', JSON.stringify(formData));
-  }
-  
-  const navigate = useNavigate();
-  const handleNextStep = () => {
-    if(!validateStep()) return;
-
-    saveDataToLocal();
-    navigate('/builder/skills');
-  }
 
   return (
     <div className="min-h-screen bg-[#0c0f0a]">
@@ -269,25 +200,6 @@ const Details = () => {
                   )}
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Form Actions */}
-          <div className="flex items-center justify-between pt-8 border-t border-white/10">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-[#ff206e]"></div>
-              <span className="text-white/30 text-sm">Required fields marked with *</span>
-            </div>
-            
-            <div className="flex gap-4">
-              <button onClick={() => {saveDataToLocal(); alert('Data Saved')}} className="flex items-center gap-2 border border-white/20 text-white/60 px-6 py-3 font-mono hover:border-white/40 hover:text-white transition group">
-                <Save className="w-4 h-4 group-hover:rotate-12 transition" />
-                SAVE DRAFT
-              </button>
-              <button type='button' onClick={() => handleNextStep()} className="flex items-center gap-2 bg-[#d2ff2f] text-[#0c0f0a] px-8 py-3 font-semibold font-mono hover:bg-[#d2ff2f]/90 transition group">
-                NEXT: SKILLS
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
-              </button>
             </div>
           </div>
         </div>
