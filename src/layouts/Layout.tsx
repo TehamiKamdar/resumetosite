@@ -1,13 +1,14 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import { Outlet } from "react-router-dom"
 
-const Layout = ({children}) =>{
+const Layout = () =>{
   return(
     <div className="min-h-screen bg-[#0c0f0a] font-['Inter',sans-serif]">
       <Navbar />
 
       <main>
-        {children}
+        <Outlet />        
       </main>
       
       <Footer />
