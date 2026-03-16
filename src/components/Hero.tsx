@@ -31,7 +31,7 @@ function Hero(){
               Transform your boring PDF resume into an interactive, modern portfolio website in minutes. No coding required. Just upload and impress.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={() => navigate('/builder')} className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
+              <button onClick={() => navigate('/builder/details')} className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
                 Get Started <ArrowRight className="w-5 h-5" />
               </button>
               <label className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition flex items-center justify-center gap-2 cursor-pointer">
