@@ -6,6 +6,7 @@ import BuilderLayout from "./layouts/BuilderLayout";
 import Details from "./pages/builder/Details";
 import Skills from "./pages/builder/Skills";
 import Projects from "./pages/builder/Projects";
+import Experience from "./pages/builder/Experience";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Route path="details" element={<Details />} />
           <Route path="skills" element={<Skills />} />
           <Route path="projects" element={<Projects />} />
-          {/* <Route path="experience" element={<Experience />} /> */}
+          <Route path="experience" element={<Experience />} />
           {/* <Route path="theme" element={<Theme />} /> */}
           {/* <Route path="preview" element={<Preview />} /> */}
         </Route>

@@ -1,21 +1,15 @@
 import { useOutletContext } from 'react-router-dom';
 import { Plus, X, Github, Link, Calendar, User, Code, FileText } from 'lucide-react';
 
-type Project = {
-  id: number;
-  name: string;
-  date: string;
-  techStack: string[];
-  url: string;
-  repo: string;
-  description: string;
-  role: string;
+type BuilderContext = {
+  formData: any; // aap type ResumeData use kar sakte ho
+  setFormData: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const Projects = () => {
-  const { formData, setFormData } = useOutletContext<any>();
+  const { formData, setFormData } = useOutletContext<BuilderContext>();
 
-  const projects: Project[] = formData.projects || [
+  const projects = formData?.projects || [
     {
       id: Date.now(),
       name: '',
@@ -30,7 +24,7 @@ const Projects = () => {
 
   // ➕ Add Project
   const addProject = () => {
-    const newProject: Project = {
+    const newProject = {
       id: Date.now(),
       name: '',
       date: '',

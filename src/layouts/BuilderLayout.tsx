@@ -8,6 +8,8 @@ export type Skill = { id: number; name: string; level: string };
 
 export type Project = { id: number; name: string; date: string; techStack: string[]; url: string; repo: string; description: string; role: string; };
 
+export type Experience = { id: number; name: string; date: string; techStack: string[]; url: string; repo: string; description: string; role: string; };
+
 export type ResumeData = {
   fullName: string;
   email: string;
@@ -17,6 +19,7 @@ export type ResumeData = {
   certifications: string[];
   skills: Skill[];
   projects: Project[];
+  experience: Experience[];
 };
 
 const BuilderLayout: React.FC = () => {
@@ -60,6 +63,7 @@ const BuilderLayout: React.FC = () => {
     certifications: draft.certifications || [""],
     skills: draft.skills || [{ id: Date.now(), name: "", level: "beginner" }],
     projects: draft.projects || [{ id: Date.now(), name: '', date: '', techStack: [''], url: '', repo: '', description: '', role: '' }],
+    experience: draft.experience || [{ id: Date.now(), company: '', role: '', startDate: '', endDate: '', currentlyWorking: false, description: '' }],
   });
 
   // Save draft
