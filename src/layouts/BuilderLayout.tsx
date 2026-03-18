@@ -6,6 +6,8 @@ import { Save, ArrowRight, ArrowLeft } from "lucide-react";
 // Type for resume data
 export type Skill = { id: number; name: string; level: string };
 
+export type Project = { id: number; name: string; date: string; techStack: string[]; url: string; repo: string; description: string; role: string; };
+
 export type ResumeData = {
   fullName: string;
   email: string;
@@ -14,6 +16,7 @@ export type ResumeData = {
   languages: string[];
   certifications: string[];
   skills: Skill[];
+  projects: Project[];
 };
 
 const BuilderLayout: React.FC = () => {
@@ -56,6 +59,7 @@ const BuilderLayout: React.FC = () => {
     languages: draft.languages || [""],
     certifications: draft.certifications || [""],
     skills: draft.skills || [{ id: Date.now(), name: "", level: "beginner" }],
+    projects: draft.projects || [{ id: Date.now(), name: '', date: '', techStack: [''], url: '', repo: '', description: '', role: '' }],
   });
 
   // Save draft
@@ -92,6 +96,14 @@ const BuilderLayout: React.FC = () => {
           return false;
         }
         return true;
+
+      case 2: 
+        if (formData.projects.length === 0) {
+          alert("Add at least one project");
+          return false;
+        }
+        return true;
+      
 
       default:
         return true;

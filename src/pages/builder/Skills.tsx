@@ -132,6 +132,10 @@ const Skills = () => {
         </button>
 
       </div>
+      {/* Simple Progress Bar */}
+      <div className="fixed bottom-0 left-0 w-full h-1 bg-white/5">
+        <div className="h-full w-2/6 bg-[#d2ff2f]"></div>
+      </div>
     </div>
   );
 };
