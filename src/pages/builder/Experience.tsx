@@ -12,52 +12,60 @@ const Experience = () => {
 
   if (!formData) return null;
 
-  const experiences = formData?.experiences || [
-    {
-      id: Date.now(),
-      company: '',
-      role: '',
-      startDate: '',
-      endDate: '',
-      currentlyWorking: false,
-      description: ''
-    }
-  ];
+  const experiences = formData.experiences || [];
 
   const addExperience = () => {
-    setFormData([...experiences, { 
-      id: Date.now() + Math.random(), 
-      company: '',
-      role: '',
-      startDate: '',
-      endDate: '',
-      currentlyWorking: false,
-      description: ''
-    }]);
+    setFormData(prev => ({
+      ...prev,
+      experiences: [
+        ...(prev.experiences || []),
+        {
+          id: Date.now(),
+          company: '',
+          role: '',
+          startDate: '',
+          endDate: '',
+          currentlyWorking: false,
+          description: ''
+        }
+      ]
+    }));
   };
 
   const removeExperience = (id) => {
-    if (experiences.length > 1) {
-      setFormData(experiences.filter(exp => exp.id !== id));
-    }
+    setFormData(prev => {
+      const list = prev.experiences || [];
+      if (list.length <= 1) return prev;
+
+      return {
+        ...prev,
+        experiences: list.filter(exp => exp.id !== id)
+      };
+    });
   };
 
   const updateExperience = (id, field, value) => {
-    setFormData(experiences.map(exp => 
-      exp.id === id ? { ...exp, [field]: value } : exp
-    ));
+    setFormData(prev => ({
+      ...prev,
+      experiences: (prev.experiences || []).map(exp =>
+        exp.id === id ? { ...exp, [field]: value } : exp
+      )
+    }));
   };
 
   const toggleCurrentlyWorking = (id) => {
-    setFormData(experiences.map(exp => {
-      if (exp.id === id) {
-        return {
-          ...exp,
-          currentlyWorking: !exp.currentlyWorking,
-          endDate: !exp.currentlyWorking ? '' : exp.endDate
-        };
-      }
-      return exp;
+    setFormData(prev => ({
+      ...prev,
+      experiences: (prev.experiences || []).map(exp => {
+        if (exp.id === id) {
+          return {
+            ...exp,
+            currentlyWorking: !exp.currentlyWorking,
+            endDate: !exp.currentlyWorking ? '' : exp.endDate
+          };
+        }
+        return exp;
+      })
     }));
   };
 
@@ -77,7 +85,7 @@ const Experience = () => {
         {/* Experience List */}
         <div className="space-y-8 mb-12">
           {experiences.map((exp, expIndex) => (
-            <div 
+            <div
               key={exp.id}
               className="bg-white/5 border border-white/10 p-8 hover:border-[#d2ff2f]/30 transition relative"
             >
@@ -91,7 +99,7 @@ const Experience = () => {
                   </div>
                   <h3 className="text-white font-semibold">Experience #{expIndex + 1}</h3>
                 </div>
-                
+
                 {/* Remove Button */}
                 {experiences.length > 1 && (
                   <button
@@ -168,9 +176,8 @@ const Experience = () => {
                         onChange={(e) => updateExperience(exp.id, 'endDate', e.target.value)}
                         placeholder="e.g., Dec 2023"
                         disabled={exp.currentlyWorking}
-                        className={`w-full bg-transparent border-2 border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] outline-none transition ${
-                          exp.currentlyWorking ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
+                        className={`w-full bg-transparent border-2 border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] outline-none transition ${exp.currentlyWorking ? 'opacity-50 cursor-not-allowed' : ''
+                          }`}
                       />
                     </div>
                   </div>
@@ -180,11 +187,10 @@ const Experience = () => {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => toggleCurrentlyWorking(exp.id)}
-                    className={`w-6 h-6 border-2 flex items-center justify-center transition ${
-                      exp.currentlyWorking 
-                        ? 'bg-[#d2ff2f] border-[#d2ff2f]' 
+                    className={`w-6 h-6 border-2 flex items-center justify-center transition ${exp.currentlyWorking
+                        ? 'bg-[#d2ff2f] border-[#d2ff2f]'
                         : 'border-white/20 hover:border-[#d2ff2f]'
-                    }`}
+                      }`}
                   >
                     {exp.currentlyWorking && <CheckCircle className="w-4 h-4 text-[#0c0f0a]" />}
                   </button>
