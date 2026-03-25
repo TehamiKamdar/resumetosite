@@ -34,10 +34,10 @@ function Hero(){
               <button onClick={() => navigate('/builder/details')} className="bg-[#d2ff2f] text-[#0c0f0a] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/90 transition flex items-center justify-center gap-2 cursor-pointer">
                 Get Started <ArrowRight className="w-5 h-5" />
               </button>
-              <label className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition flex items-center justify-center gap-2 cursor-pointer">
+              {/* <label className="border border-[#d2ff2f] text-[#d2ff2f] px-8 py-4 font-semibold text-lg hover:bg-[#d2ff2f]/10 transition flex items-center justify-center gap-2 cursor-pointer">
                 Upload your Resume <UploadIcon className='w-5 h-5' />
-                {/* <input type="file" name="resume-upload" accept='.pdf' className='hidden' id="" onChange={handleChange} /> */}
-              </label>
+                <input type="file" name="resume-upload" accept='.pdf' className='hidden' id="" onChange={handleChange} />
+              </label> */}
               {/* {uploadedFile && (
                 // <ResumeUploader
                 //   file={uploadedFile}
