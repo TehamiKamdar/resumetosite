@@ -297,26 +297,6 @@ const Projects = () => {
             </span>
           </div>
         </button>
-
-        {/* Project Stats */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white/5 p-6">
-            <div className="text-[#d2ff2f] text-2xl font-bold mb-1">{projects.length}</div>
-            <div className="text-white/40 text-sm">Total Projects</div>
-          </div>
-          <div className="bg-white/5 p-6">
-            <div className="text-[#41ead4] text-2xl font-bold mb-1">
-              {projects.reduce((acc, p) => acc + p.techStack.filter(t => t.trim()).length, 0)}
-            </div>
-            <div className="text-white/40 text-sm">Technologies Used</div>
-          </div>
-          <div className="bg-white/5 p-6">
-            <div className="text-[#ff206e] text-2xl font-bold mb-1">
-              {projects.filter(p => p.url || p.repo).length}
-            </div>
-            <div className="text-white/40 text-sm">With Links</div>
-          </div>
-        </div>
       </div>
 
       {/* Simple Progress Bar */}

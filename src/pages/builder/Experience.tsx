@@ -235,26 +235,6 @@ const Experience = () => {
             </span>
           </div>
         </button>
-
-        {/* Experience Stats */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white/5 p-6">
-            <div className="text-[#d2ff2f] text-2xl font-bold mb-1">{experiences.length}</div>
-            <div className="text-white/40 text-sm">Total Experiences</div>
-          </div>
-          <div className="bg-white/5 p-6">
-            <div className="text-[#41ead4] text-2xl font-bold mb-1">
-              {experiences.filter(exp => exp.currentlyWorking).length}
-            </div>
-            <div className="text-white/40 text-sm">Current Positions</div>
-          </div>
-          <div className="bg-white/5 p-6">
-            <div className="text-[#ff206e] text-2xl font-bold mb-1">
-              {new Set(experiences.map(exp => exp.company).filter(c => c)).size}
-            </div>
-            <div className="text-white/40 text-sm">Companies</div>
-          </div>
-        </div>
       </div>
 
       {/* Simple Progress Bar */}
