@@ -1,6 +1,7 @@
 // Experience.jsx
 import { Plus, X, Building, User, Calendar, CheckCircle, Briefcase } from 'lucide-react';
 import { useOutletContext } from 'react-router-dom';
+import Description from '../../components/Description';
 
 type BuilderContext = {
   formData: any; // aap type ResumeData use kar sakte ho
@@ -203,12 +204,9 @@ const Experience = () => {
                     <Briefcase className="w-4 h-4" />
                     DESCRIPTION / ACHIEVEMENTS
                   </label>
-                  <textarea
+                  <Description 
                     value={exp.description}
-                    onChange={(e) => updateExperience(exp.id, 'description', e.target.value)}
-                    rows={4}
-                    placeholder="Describe your responsibilities, achievements, technologies used, and impact..."
-                    className="w-full bg-transparent border-2 border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] outline-none transition resize-none"
+                    onChange={(val) => updateExperience(exp.id, 'description', val)}
                   />
                 </div>
               </div>
