@@ -27,7 +27,7 @@ const Description = ({ value, onChange }) => {
             'redo'
           ]
         }}
-        onChange={(event, editor) => {
+        onChange={(_, editor) => {
           const data = editor.getData();
 
           // 🔥 debounce (smooth typing)
