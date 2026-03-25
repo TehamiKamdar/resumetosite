@@ -65,8 +65,8 @@ const Details = () => {
               </label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 placeholder="e.g., Sarah Chen"
                 className="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] focus:bg-white/10 outline-none transition"

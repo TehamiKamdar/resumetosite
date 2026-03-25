@@ -11,7 +11,7 @@ export type Project = { id: number; name: string; date: string; techStack: strin
 export type Experience = { id: number; company: string; role: string; startDate: string; endDate: string; currentlyWorking: string; description: string; };
 
 export type ResumeData = {
-  fullName: string;
+  name: string;
   email: string;
   phone: string;
   about: string;
@@ -55,7 +55,7 @@ const BuilderLayout: React.FC = () => {
   // Load draft from localStorage
   const draft = JSON.parse(localStorage.getItem("resumeDraft") || "{}");
   const [formData, setFormData] = useState<ResumeData>({
-    fullName: draft.fullName || "",
+    name: draft.name || "",
     email: draft.email || "",
     phone: draft.phone || "",
     about: draft.about || "",
@@ -75,8 +75,8 @@ const BuilderLayout: React.FC = () => {
   const validateStep = (): boolean => {
     switch (activeStep) {
       case 0: // DETAILS
-        const { fullName, email, phone, about } = formData;
-        if (!fullName.trim()) {
+        const { name, email, phone, about } = formData;
+        if (!name.trim()) {
           alert("Full Name is required");
           return false;
         }
