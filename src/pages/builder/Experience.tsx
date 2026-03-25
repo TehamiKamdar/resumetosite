@@ -13,7 +13,17 @@ const Experience = () => {
 
   if (!formData) return null;
 
-  const experiences = formData.experiences || [];
+  const experiences = formData.experiences || [
+    {
+      id: Date.now(),
+      company: '',
+      role: '',
+      startDate: '',
+      endDate: '',
+      currentlyWorking: false,
+      description: ''
+    }
+  ];
 
   const addExperience = () => {
     setFormData(prev => ({
@@ -202,7 +212,7 @@ const Experience = () => {
                 <div>
                   <label className="flex items-center gap-2 text-white/40 text-xs mb-2 tracking-wider">
                     <Briefcase className="w-4 h-4" />
-                    DESCRIPTION / ACHIEVEMENTS
+                   JOB DESCRIPTION / ROLE
                   </label>
                   <Description 
                     value={exp.description}

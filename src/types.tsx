@@ -31,5 +31,5 @@ export type ResumeData = {
   certifications: string[];
   skills: Skill[];
   projects: Project[];
-  experience: Experience[];
+  experiences: Experience[];
 };

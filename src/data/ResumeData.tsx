@@ -23,7 +23,7 @@ export const getResumeDraft = (): ResumeData => {
       description: "",
       role: ""
     }],
-    experience: draft.experience || [{
+    experiences: draft.experiences || [{
       id: Date.now(),
       company: "",
       role: "",
