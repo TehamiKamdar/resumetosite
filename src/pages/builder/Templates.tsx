@@ -11,13 +11,14 @@ const Template = () => {
     const stored = localStorage.getItem('resumeDraft');
     if (stored) {
       setResumeData(JSON.parse(stored));
+    } else {
+      // Only alert/navigate if no data in localStorage
+      // This will run once after first render
+      // No infinite loop
+      alert('Please fill up the resume form');
+      navigate('/builder/details');
     }
-  }, []);
-
-  if (!resumeData) {
-    alert('Please fill up the resume form');
-    navigate('/builder/details');
-  }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-[#0c0f0a] py-12">
