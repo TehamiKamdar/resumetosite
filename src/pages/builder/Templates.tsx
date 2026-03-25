@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { templates } from "../../templates";
-import type { ResumeData } from "../../types";
 
 const Template = () => {
   const navigate = useNavigate();
-  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('resumeDraft');
-    if (stored) {
-      setResumeData(JSON.parse(stored));
-    } else {
-      // Only alert/navigate if no data in localStorage
-      // This will run once after first render
-      // No infinite loop
+    if (!stored) {
       alert('Please fill up the resume form');
       navigate('/builder/details');
     }
