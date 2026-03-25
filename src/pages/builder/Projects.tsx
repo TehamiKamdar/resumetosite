@@ -1,5 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { Plus, X, Github, Link, Calendar, User, Code, FileText } from 'lucide-react';
+import Description from '../../components/Description';
 
 type BuilderContext = {
   formData: any; // aap type ResumeData use kar sakte ho
@@ -274,12 +275,9 @@ const Projects = () => {
                     <FileText className="w-4 h-4" />
                     DESCRIPTION
                   </label>
-                  <textarea
+                  <Description
                     value={project.description}
-                    onChange={(e) => updateProject(project.id, 'description', e.target.value)}
-                    rows={4}
-                    placeholder="Describe the project, your contributions, challenges overcome, and impact..."
-                    className="w-full bg-transparent border-2 border-white/10 p-4 text-white placeholder-white/20 focus:border-[#d2ff2f] outline-none transition resize-none"
+                    onChange={(e) => updateProject(project.id, 'description', e)}
                   />
                 </div>
               </div>
