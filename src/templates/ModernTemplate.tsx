@@ -1,13 +1,11 @@
 // templates/ModernPortfolioTemplate.tsx
-import { useOutletContext } from "react-router-dom";
-
-type BuilderContext = {
-  formData: any | null;
-  setFormData: React.Dispatch<React.SetStateAction<any | null>>;
-};
+import { getResumeDraft } from '../data/ResumeData';
+import type { ResumeData } from '../types';
 
 const ModernTemplate = () => {
-  const { formData } = useOutletContext<BuilderContext>();
+  const formData: ResumeData = getResumeDraft();
+
+  if (!formData) return <div>No data found</div>;
 
   if (!formData) {
     return (
@@ -26,7 +24,7 @@ const ModernTemplate = () => {
           className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width=%2260%22%20height=%2260%22%20viewBox=%220%200%2060%2060%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill=%22none%22%20fill-rule=%22evenodd%22%3E%3Cg%20fill=%22%239C92AC%22%20fill-opacity=%220.05%22%3E%3Cpath%20d=%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"
         ></div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div className="relative  mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="text-center md:text-left md:flex md:justify-between md:items-end gap-8">
             <div className="space-y-4">
               <div className="inline-block">
@@ -74,7 +72,7 @@ const ModernTemplate = () => {
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#d2ff2f]/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Experience Section - Modern Cards */}
         {data.experiences?.length > 0 && (
           <section className="mb-20">
@@ -83,7 +81,7 @@ const ModernTemplate = () => {
               <h2 className="text-3xl font-bold text-slate-800">Experience</h2>
             </div>
             <div className="space-y-6">
-              {data.experiences.map((exp, idx) => (
+              {data.experiences.map((exp, _) => (
                 <div
                   key={exp.id}
                   className="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#d2ff2f]/30"
@@ -281,7 +279,7 @@ const ModernTemplate = () => {
       </div>
 
       <div className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} {data.name || 'Portfolio'}. All rights reserved.

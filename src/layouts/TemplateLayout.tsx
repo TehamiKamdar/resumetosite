@@ -15,7 +15,7 @@ const TemplateLayout = () => {
 
       {/* 🔹 Header */}
       <div className="sticky top-0 z-50 bg-[#0c0f0a]/90 backdrop-blur border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="mx-auto px-4 py-4 flex items-center justify-between">
 
           {/* Left - Back */}
           <button
@@ -42,7 +42,7 @@ const TemplateLayout = () => {
 
       {/* 🔹 Template Content */}
       <div className="py-10">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="mx-auto px-4">
           <Template />
         </div>
       </div>
