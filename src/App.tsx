@@ -30,7 +30,7 @@ function App() {
           <Route path="theme" element={<Template />} />
           {/* <Route path="preview" element={<Preview />} /> */}
         </Route>
-        <Route path="theme/:themeId" element={<TemplateLayout />} />
+        <Route path="/builder/theme/:themeId" element={<TemplateLayout />} />
 
       </Routes>
     </BrowserRouter>

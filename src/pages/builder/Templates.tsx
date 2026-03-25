@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
 import type { ResumeData } from "../../layouts/BuilderLayout";
 import { useNavigate } from "react-router-dom";
-import ModernTemplate from "../../templates/ModernTemplate";
-
-const templates = [
-  {
-    id: 'modern',
-    name: 'Modern Clean',
-    description: 'Modern Clean',
-    component: ModernTemplate,
-    previewBg: 'bg-white'
-  }
-]
+import { templates } from "../../templates";
 
 const Template = () => {
   const navigate = useNavigate();
   const [resumeData, setResumeData] = useState<ResumeData | null>(null);
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('resumeDraft');
@@ -28,25 +17,6 @@ const Template = () => {
   if (!resumeData) {
     alert('Please fill up the resume form');
     navigate('/builder/details');
-  }
-
-  if (selectedTemplate) {
-    const Template = templates.find(t => t.id === selectedTemplate)?.component;
-    if (!Template) return <div>Template not found</div>;
-
-    return (
-      <div className="min-h-screen bg-[#0c0f0a] py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <button
-            onClick={() => setSelectedTemplate(null)}
-            className="mb-6 flex items-center gap-2 text-[#d2ff2f] hover:text-[#b8e62a] transition-colors"
-          >
-            ← Back to templates
-          </button>
-          <Template />
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -62,7 +32,7 @@ const Template = () => {
             <div
               key={template.id}
               className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-[#d2ff2f] transition-all cursor-pointer group"
-              onClick={() => setSelectedTemplate(template.id)}
+              onClick={() => navigate(`/builder/theme/${template.id}`)}
             >
               {/* Preview Area */}
               <div className="h-48 bg-gray-700 relative overflow-hidden">
