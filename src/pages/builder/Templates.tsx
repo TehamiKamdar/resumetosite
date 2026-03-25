@@ -35,7 +35,7 @@ const Template = () => {
     if (!Template) return <div>Template not found</div>;
 
     return (
-      <div className="min-h-screen bg-gray-900 py-12">
+      <div className="min-h-screen bg-[#0c0f0a] py-12">
         <div className="max-w-6xl mx-auto px-4">
           <button
             onClick={() => setSelectedTemplate(null)}
@@ -43,14 +43,14 @@ const Template = () => {
           >
             ← Back to templates
           </button>
-          <Template data={resumeData} />
+          <Template />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 py-12">
+    <div className="min-h-screen bg-[#0c0f0a] py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-white mb-2">Choose Your Template</h1>

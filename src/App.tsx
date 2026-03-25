@@ -7,6 +7,8 @@ import Details from "./pages/builder/Details";
 import Skills from "./pages/builder/Skills";
 import Projects from "./pages/builder/Projects";
 import Experience from "./pages/builder/Experience";
+import Template from "./pages/builder/Templates";
+import TemplateLayout from "./layouts/TemplateLayout";
 
 
 function App() {
@@ -25,9 +27,10 @@ function App() {
           <Route path="skills" element={<Skills />} />
           <Route path="projects" element={<Projects />} />
           <Route path="experience" element={<Experience />} />
-          {/* <Route path="theme" element={<Theme />} /> */}
+          <Route path="theme" element={<Template />} />
           {/* <Route path="preview" element={<Preview />} /> */}
         </Route>
+        <Route path="theme/:themeId" element={<TemplateLayout />} />
 
       </Routes>
     </BrowserRouter>
