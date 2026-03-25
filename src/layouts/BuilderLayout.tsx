@@ -2,25 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Save, ArrowRight, ArrowLeft } from "lucide-react";
-
-// Type for resume data
-export type Skill = { id: number; name: string; level: string };
-
-export type Project = { id: number; name: string; date: string; techStack: string[]; url: string; repo: string; description: string; role: string; };
-
-export type Experience = { id: number; company: string; role: string; startDate: string; endDate: string; currentlyWorking: string; description: string; };
-
-export type ResumeData = {
-  name: string;
-  email: string;
-  phone: string;
-  about: string;
-  languages: string[];
-  certifications: string[];
-  skills: Skill[];
-  projects: Project[];
-  experience: Experience[];
-};
+import { getResumeDraft, saveResumeDraft } from "../data/ResumeData";
+import type { ResumeData } from "../types";
 
 const BuilderLayout: React.FC = () => {
   const steps = [
@@ -32,96 +15,52 @@ const BuilderLayout: React.FC = () => {
     { number: 6, name: "PUBLISH & PREVIEW", path: "preview" },
   ];
 
-  // Map path → step number (0-based)
-  const pathToStep: Record<string, number> = {
-    "/builder/details": 0,
-    "/builder/skills": 1,
-    "/builder/projects": 2,
-    "/builder/experience": 3,
-    "/builder/theme": 4,
-    "/builder/preview": 5,
-  };
-
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Active step synced with route
-  const [activeStep, setActiveStep] = useState(pathToStep[location.pathname] || 0);
+  const pathToStep: Record<string, number> = steps.reduce(
+    (acc, step, idx) => ({ ...acc, [`/builder/${step.path}`]: idx }),
+    {}
+  );
 
+  const [activeStep, setActiveStep] = useState(pathToStep[location.pathname] || 0);
+  const [formData, setFormData] = useState<ResumeData>(getResumeDraft());
+
+  // Sync active step with URL
   useEffect(() => {
     setActiveStep(pathToStep[location.pathname] || 0);
   }, [location.pathname]);
 
-  // Load draft from localStorage
-  const draft = JSON.parse(localStorage.getItem("resumeDraft") || "{}");
-  const [formData, setFormData] = useState<ResumeData>({
-    name: draft.name || "",
-    email: draft.email || "",
-    phone: draft.phone || "",
-    about: draft.about || "",
-    languages: draft.languages || [""],
-    certifications: draft.certifications || [""],
-    skills: draft.skills || [{ id: Date.now(), name: "", level: "beginner" }],
-    projects: draft.projects || [{ id: Date.now(), name: '', date: '', techStack: [''], url: '', repo: '', description: '', role: '' }],
-    experience: draft.experience || [{ id: Date.now(), company: '', role: '', startDate: '', endDate: '', currentlyWorking: false, description: '' }],
-  });
-
-  // Save draft
-  const saveDataToLocal = () => {
-    localStorage.setItem("resumeDraft", JSON.stringify(formData));
-  };
-
   // Validation per step
   const validateStep = (): boolean => {
     switch (activeStep) {
-      case 0: // DETAILS
+      case 0: { // DETAILS
         const { name, email, phone, about } = formData;
-        if (!name.trim()) {
-          alert("Full Name is required");
-          return false;
-        }
-        if (!email.trim()) {
-          alert("Email is required");
-          return false;
-        }
-        if (!phone.trim()) {
-          alert("Phone is required");
-          return false;
-        }
-        if (!about.trim()) {
-          alert("About is required");
-          return false;
-        }
+        if (!name.trim()) { alert("Full Name is required"); return false; }
+        if (!email.trim()) { alert("Email is required"); return false; }
+        if (!phone.trim()) { alert("Phone is required"); return false; }
+        if (!about.trim()) { alert("About is required"); return false; }
         return true;
-
+      }
       case 1: // SKILLS
-        if (!formData.skills || formData.skills.length === 0 || formData.skills.every(s => !s.name.trim())) {
-          alert("Add at least one skill");
-          return false;
+        if (!formData.skills?.length || formData.skills.every(s => !s.name.trim())) {
+          alert("Add at least one skill"); return false;
         }
         return true;
-
-      case 2: 
-        if (formData.projects.length === 0) {
-          alert("Add at least one project");
-          return false;
-        }
+      case 2: // PROJECTS
+        if (!formData.projects?.length) { alert("Add at least one project"); return false; }
         return true;
-      
-
       default:
         return true;
     }
   };
 
-  // Next / Back navigation
   const handleNextStep = () => {
     if (!validateStep()) return;
+    saveResumeDraft(formData);
 
-    saveDataToLocal();
     if (activeStep < steps.length - 1) {
       const nextStep = activeStep + 1;
-      setActiveStep(nextStep);
       navigate(`/builder/${steps[nextStep].path}`);
     }
   };
@@ -129,9 +68,13 @@ const BuilderLayout: React.FC = () => {
   const handleBackStep = () => {
     if (activeStep > 0) {
       const prevStep = activeStep - 1;
-      setActiveStep(prevStep);
       navigate(`/builder/${steps[prevStep].path}`);
     }
+  };
+
+  const handleSaveDraft = () => {
+    saveResumeDraft(formData);
+    alert("Draft Saved!");
   };
 
   return (
@@ -163,7 +106,7 @@ const BuilderLayout: React.FC = () => {
         <div className="flex gap-4">
           <button
             type="button"
-            onClick={() => { saveDataToLocal(); alert("Draft Saved"); }}
+            onClick={handleSaveDraft}
             className="flex items-center gap-2 border border-white/20 text-white/60 px-6 py-3 font-mono hover:border-white/40 hover:text-white transition"
           >
             <Save className="w-4 h-4" />
