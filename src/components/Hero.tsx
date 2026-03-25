@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, UploadIcon } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 // import ResumeUploader from './ResumeUploader';
 // import type { ResumeData } from './ResumeUploader';
