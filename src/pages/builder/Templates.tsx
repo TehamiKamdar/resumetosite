@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { ResumeData } from "../../layouts/BuilderLayout";
 import { useNavigate } from "react-router-dom";
 import { templates } from "../../templates";
+import type { ResumeData } from "../../types";
 
 const Template = () => {
   const navigate = useNavigate();
