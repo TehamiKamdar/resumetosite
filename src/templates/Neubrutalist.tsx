@@ -2,7 +2,7 @@
 import { getResumeDraft } from '../data/ResumeData';
 import type { ResumeData } from '../types';
 
-const NeubrutalistPortfolioTemplate = () => {
+const NeubrutalistTemplate = () => {
   const formData: ResumeData = getResumeDraft();
 
   if (!formData) {
@@ -197,4 +197,4 @@ const NeubrutalistPortfolioTemplate = () => {
   );
 };
 
-export default NeubrutalistPortfolioTemplate;
+export default NeubrutalistTemplate;
