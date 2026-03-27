@@ -1,11 +1,9 @@
 // templates/NeubrutalistPortfolioTemplate.tsx
 import { getResumeDraft } from '../data/ResumeData';
 import type { ResumeData } from '../types';
-import { useState } from 'react';
 
-const NeubrutalistTemplate = () => {
+const NeubrutalistPortfolioTemplate = () => {
   const formData: ResumeData = getResumeDraft();
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   if (!formData) {
     return (
@@ -82,7 +80,7 @@ const NeubrutalistTemplate = () => {
               {data.experiences.map((exp, idx) => (
                 <div
                   key={exp.id}
-                  className={`bg-white border-4 border-black p-6 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] ${idx % 2 === 0 ? 'ml-0 md:ml-8' : 'mr-0 md:mr-8'}`}
+                  className={`bg-white border-4 border-black p-6 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow ${idx % 2 === 0 ? 'ml-0 md:ml-8' : 'mr-0 md:mr-8'}`}
                 >
                   <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
                     <div>
@@ -110,9 +108,7 @@ const NeubrutalistTemplate = () => {
               {data.projects.map((project) => (
                 <div
                   key={project.id}
-                  className="bg-white border-4 border-black p-6 relative transition-transform hover:-translate-y-2"
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
+                  className="bg-white border-4 border-black p-6 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]"
                 >
                   <div className="absolute -top-3 -right-3 bg-yellow-300 border-2 border-black px-2 py-1 text-xs font-mono font-bold rotate-6">
                     {project.date}
@@ -201,4 +197,4 @@ const NeubrutalistTemplate = () => {
   );
 };
 
-export default NeubrutalistTemplate;
+export default NeubrutalistPortfolioTemplate;
