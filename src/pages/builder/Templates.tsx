@@ -55,6 +55,10 @@ const Template = () => {
           ))}
         </div>
       </div>
+      {/* Simple Progress Bar */}
+      <div className="fixed bottom-0 left-0 w-full h-1 bg-white/5">
+        <div className="h-full w-4/5 bg-[#d2ff2f]"></div>
+      </div>
     </div>
   );
 }
