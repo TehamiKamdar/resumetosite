@@ -18,7 +18,7 @@ export const templates = [
     name: "Minimalist Terminal",
     component: MinimalistTerminalTemplate,
     previewBg: 'bg-white',
-    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    description: "Tab navigation, ASCII art, monospace font, command-line aesthetic",
     isPremium: false,
   },
   {
@@ -26,7 +26,7 @@ export const templates = [
     name: "Neubrutalist",
     component: NeubrutalistTemplate,
     previewBg: 'bg-white',
-    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    description: "Heavy borders, shadows, rotation effects, high contrast colors",
     isPremium: false,
   },
   {
@@ -34,7 +34,7 @@ export const templates = [
     name: "Aurora Glass",
     component: AuroraGlassTemplate,
     previewBg: 'bg-white',
-    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    description: "Glassmorphism, animated gradient background, smooth hover effects",
     isPremium: false,
   },
 ];
