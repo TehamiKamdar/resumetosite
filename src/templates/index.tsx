@@ -1,4 +1,5 @@
 // src/templates/index.ts
+import AuroraGlassTemplate from "./Aurora";
 import MinimalistTerminalTemplate from "./MinimalistTerminal";
 import ModernTemplate from "./Modern";
 import NeubrutalistTemplate from "./Neubrutalist";
@@ -22,8 +23,16 @@ export const templates = [
   },
   {
     id: "neubrutalist",
-    name: "Neubrutalist Terminal",
+    name: "Neubrutalist",
     component: NeubrutalistTemplate,
+    previewBg: 'bg-white',
+    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    isPremium: false,
+  },
+  {
+    id: "aurora-glass",
+    name: "Aurora Glass",
+    component: AuroraGlassTemplate,
     previewBg: 'bg-white',
     description: "Modern Sleek design RTS's top rowing portfolio theme",
     isPremium: false,
