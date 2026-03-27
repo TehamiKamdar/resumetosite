@@ -1,6 +1,7 @@
 // src/templates/index.ts
 import MinimalistTerminalTemplate from "./MinimalistTerminal";
 import ModernTemplate from "./Modern";
+import NeubrutalistTemplate from "./Neubrutalist";
 
 export const templates = [
   {
@@ -17,5 +18,14 @@ export const templates = [
     component: MinimalistTerminalTemplate,
     previewBg: 'bg-white',
     description: "Modern Sleek design RTS's top rowing portfolio theme",
+    isPremium: false,
+  },
+  {
+    id: "neubrutalist",
+    name: "Neubrutalist Terminal",
+    component: NeubrutalistTemplate,
+    previewBg: 'bg-white',
+    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    isPremium: false,
   },
 ];
