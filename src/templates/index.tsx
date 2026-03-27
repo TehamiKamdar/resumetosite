@@ -1,6 +1,6 @@
 // src/templates/index.ts
-import ModernTemplate from "./ModernTemplate";
-// import ClassicTemplate from "./ClassicTemplate";
+import MinimalistTerminalTemplate from "./MinimalistTerminal";
+import ModernTemplate from "./Modern";
 
 export const templates = [
   {
@@ -8,11 +8,14 @@ export const templates = [
     name: "Modern",
     component: ModernTemplate,
     previewBg: 'bg-white',
-    description: "Modern Sleek design RTS's top rowing portfolio theme"
+    description: "Modern Sleek design RTS's top rowing portfolio theme",
+    isPremium: false,
   },
-  // {
-  //   id: "classic",
-  //   name: "Classic",
-  //   component: ClassicTemplate,
-  // },
+  {
+    id: "minimalist-terminal",
+    name: "Minimalist Terminal",
+    component: MinimalistTerminalTemplate,
+    previewBg: 'bg-white',
+    description: "Modern Sleek design RTS's top rowing portfolio theme",
+  },
 ];
